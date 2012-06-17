@@ -14,7 +14,7 @@ class SearchResultClient:
 
         request = urllib.urlencode({"zws-id":zconfig.ZWSID,
             "address":addressDict["addressline"],
-            "citystatezip":" ".join([addressDict["city"],addressDict["state"],addressDict["zip"]]),
+            "citystatezip":addressDict["citystatezip"],
             "rentzestimate":"true"
             }
             )

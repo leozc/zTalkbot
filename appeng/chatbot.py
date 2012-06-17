@@ -24,6 +24,7 @@ import urllib2
 
 from chatbot_context import zRobotContext
 import json
+from zAddress import *
 class XMPPHandler(webapp.RequestHandler):
     def post(self):
         message = xmpp.Message(self.request.POST)
@@ -258,16 +259,19 @@ class XMPPHandler(webapp.RequestHandler):
             if re.search(addrpattern,body):
                 address = re.search(addrpattern,body).group(0)
                 address = re.sub("[,:'\"]","",address)
-                address= address.split()
-                return {"addressline":" ".join(address[0:-3]),"state":address[-2], "zip":address[-1],"city":address[-3]}
+                a = AddressParser(address).parse()
+                #address= address.split()
+                return {"addressline":a.addressLine,"state":("unknown" if a.state==None else a.state), "zip":("unknown" if a.zipCode==None else a.zipCode),"city":a.city,"citystatezip":a.cityStateZip()}
             else:
                 return None
         except Exception as ee:
             raise Exception ("Cannot parse your address, are you using full address? "+str(ee))
 
     def formatAddress(self,address):
-        return "'"+address["addressline"]+"'" + ", city is " + address["city"].capitalize() + " in " +address["state"].upper() + " state, ZIP code is "+ address['zip']
+        return "'"+address["addressline"]+"'" + ", in " + address["city"].capitalize() + " of " +address["state"].upper() + ", ZIP is"+ address['zip']
 
+
+## regist handler
 application = webapp.WSGIApplication([('/_ah/xmpp/message/chat/', XMPPHandler)],
                                      debug=True)
 
