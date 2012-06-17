@@ -1,0 +1,6 @@
+backends:
+#300+ images/min
+- name: convertor-fast
+  class: B2
+  instances: 2
+  options: public,dynamic

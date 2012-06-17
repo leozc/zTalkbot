@@ -1,0 +1,22 @@
+application: ztalkbot
+version: ztalkbot
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+libraries:
+- name: PIL
+  version: latest
+- name: numpy
+  version: 1.6.1
+- name: django
+  version: latest
+inbound_services:
+- xmpp_message
+handlers:
+
+- url: /hello
+  script: hello.application
+
+- url: .*
+  script: chatbot.application

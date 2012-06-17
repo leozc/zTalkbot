@@ -1,0 +1,3 @@
+<html>
+<h3 id="build-version">%BUILD_VERSION%</h3>
+</html>
