@@ -8,6 +8,5 @@ from google.appengine.api import memcache
 
 # Globals
 memcacheClient = memcache.Client()
-DEFAULT_RESIZE_FILTER = PIL.Image.ANTIALIAS
 
 
