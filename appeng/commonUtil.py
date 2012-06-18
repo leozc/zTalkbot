@@ -4,7 +4,6 @@ import sys
 sys.path.insert(0, "packages.zip")
 
 #import PIL
-import PIL.Image
 from google.appengine.api import memcache
 
 # Globals

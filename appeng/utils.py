@@ -8,7 +8,6 @@ import json
 import os
 import logging
 import string
-import hmac, hashlib, base64
 from decimal import *
 
 
